@@ -22,9 +22,11 @@ namespace Capa_Presentacion
         private static Usuario usuarioaactual;
         private static IconMenuItem MenuActivo= null;
         private static Form formularioActivo = null;
+        // Reemplaza la línea de declaración con esta:
+        private List<PermisoConRol> listaPermisosUsuario;
 
 
-    public Inicio(Usuario objusuario)
+        public Inicio(Usuario objusuario)
         {
 
             usuarioaactual = objusuario;
@@ -34,19 +36,51 @@ namespace Capa_Presentacion
 
         private void Inicio_Load(object sender, EventArgs e)
         {
-          
-                if (usuarioaactual != null)
-                {
-                    lblusuario.Text = usuarioaactual.nombres+" "+ usuarioaactual.apellidos;
-                }
-                else
-                {
-                    lblusuario.Text = "Usuario no definido";
-                }
-                // Cargar el formulario de usuarios por defecto
-                AbrirFormulario(SubmenuUsuario, new frmUsuarios());
+            if (usuarioaactual != null)
+            {
+                lblusuario.Text = usuarioaactual.nombres + " " + usuarioaactual.apellidos;
+
+                // Carga los permisos del usuario y activa los menús
+                CargarPermisosDeUsuario();
+                ActivarMenus();
+            }
+            else
+            {
+                lblusuario.Text = "Usuario no definido";
+            }
+
+            // Cargar el formulario de usuarios por defecto
+            AbrirFormulario(SubmenuUsuario, new frmUsuarios());
         }
 
+        private void CargarPermisosDeUsuario()
+        {
+            CL_RolPermiso clRolPermiso = new CL_RolPermiso();
+            // El método ahora devuelve una lista de PermisoConRol
+            listaPermisosUsuario = clRolPermiso.ObtenerPermisosPorRol(usuarioaactual.oRol.Id_rol);
+        }
+
+        private void ActivarMenus()
+        {
+            foreach (var menu in MenuContendor.Items)
+            {
+                if (menu is IconMenuItem menuPrincipal)
+                {
+                    // Ahora puedes acceder a 'nombre_menu' sin errores
+                    bool tienePermiso = listaPermisosUsuario.Any(p => p.nombre_menu == menuPrincipal.Text && p.Asignado);
+                    menuPrincipal.Enabled = tienePermiso;
+
+                    foreach (var submenu in menuPrincipal.DropDownItems)
+                    {
+                        if (submenu is ToolStripMenuItem subItem)
+                        {
+                            bool tienePermisoSubmenu = listaPermisosUsuario.Any(p => p.nombre_menu == subItem.Text && p.Asignado);
+                            subItem.Enabled = tienePermisoSubmenu;
+                        }
+                    }
+                }
+            }
+        }
 
         private void AbrirFormulario(IconMenuItem menu, Form formulario)
         {
@@ -73,19 +107,14 @@ namespace Capa_Presentacion
             formulario.Dock = DockStyle.Fill;
 
             // Agrega el formulario al panel contenedor y lo muestra
-            PContenedor.Controls.Clear(); // Asegúrate de limpiar el panel antes de añadir el formulario nuevo
+            PContenedor.Controls.Clear();
             PContenedor.Controls.Add(formulario);
             formulario.Show();
         }
 
-
         private void menuUsuario_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmUsuarios());
-            
-
-
-           
         }
 
         private void menuRol_Click(object sender, EventArgs e)
@@ -125,7 +154,7 @@ namespace Capa_Presentacion
 
         private void SubmenuInventario_Click(object sender, EventArgs e)
         {
-            AbrirFormulario((IconMenuItem)sender, new frmInventario ());
+            AbrirFormulario((IconMenuItem)sender, new frmInventario());
         }
 
         private void SubmenuCategoria_Click(object sender, EventArgs e)

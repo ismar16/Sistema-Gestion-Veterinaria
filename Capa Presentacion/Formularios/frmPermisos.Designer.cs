@@ -93,7 +93,6 @@ namespace Capa_Presentacion.Formularios
             this.dgvPermisos.RowTemplate.Height = 24;
             this.dgvPermisos.Size = new System.Drawing.Size(509, 253);
             this.dgvPermisos.TabIndex = 6;
-            this.dgvPermisos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPermisos_CellContentClick);
             // 
             // cboParentMenu
             // 
