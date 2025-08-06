@@ -7,41 +7,43 @@ using System.Data;
 using System.Data.SqlClient;
 
 using Capa_Entidad;
+using static Capa_Entidad.RolPermiso;
 
 
 namespace Capa_Datos
     {
         public class CD_RolPermiso
         {
-            // Método para obtener los permisos asignados a un rol
-            public List<RolPermiso> ObtenerPermisosPorRol(int Id_rol)
+        public List<PermisoConRol> ObtenerPermisosPorRol(int idRol)
+        {
+            List<PermisoConRol> listaPermisos = new List<PermisoConRol>();
+            using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
             {
-                List<RolPermiso> listaPermisos = new List<RolPermiso>();
-                using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
-                {
-                    SqlCommand cmd = new SqlCommand("ObtenerPermisosPorRol", conexion);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Id_rol", Id_rol);
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT p.Id_permiso, p.nombre_menu, ISNULL(rp.Asignado, 0) as Asignado " +
+                    "FROM Permisos p LEFT JOIN RolPermiso rp ON p.Id_permiso = rp.Id_permiso AND rp.Id_rol = @Id_rol",
+                    conexion);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@Id_rol", idRol);
 
-                    conexion.Open();
-                    using (SqlDataReader dr = cmd.ExecuteReader())
+                conexion.Open();
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
                     {
-                        while (dr.Read())
+                        listaPermisos.Add(new PermisoConRol
                         {
-                            listaPermisos.Add(new RolPermiso
-                            {
-                                Id_rol = Id_rol,
-                                Id_permiso = Convert.ToInt32(dr["Id_permiso"]),
-                                Asignado = Convert.ToBoolean(dr["Asignado"])
-                            });
-                        }
+                            Id_permiso = Convert.ToInt32(dr["Id_permiso"]),
+                            nombre_menu = dr["nombre_menu"].ToString(),
+                            Asignado = Convert.ToBoolean(dr["Asignado"])
+                        });
                     }
                 }
-                return listaPermisos;
             }
-
-            // Método para asignar un permiso a un rol
-            public void AsignarPermiso(int Id_rol, int Id_permiso)
+            return listaPermisos;
+        }
+        // Método para asignar un permiso a un rol
+        public void AsignarPermiso(int Id_rol, int Id_permiso)
             {
                 using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
                 {

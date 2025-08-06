@@ -94,14 +94,6 @@ namespace Capa_Presentacion.Formularios
         }
 
 
-
-
-
-        private void dgvPermisos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
-
-
         private void btnEliminarP_Click(object sender, EventArgs e)
         {
             if (dgvPermisos.SelectedRows.Count > 0)

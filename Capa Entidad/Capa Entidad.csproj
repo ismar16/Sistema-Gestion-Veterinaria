@@ -47,6 +47,7 @@
     <Compile Include="Inventario.cs" />
     <Compile Include="Mascotas.cs" />
     <Compile Include="PagoServicos.cs" />
+    <Compile Include="PermisoConRol.cs" />
     <Compile Include="Permisos.cs" />
     <Compile Include="Propietario.cs" />
     <Compile Include="Rol.cs" />

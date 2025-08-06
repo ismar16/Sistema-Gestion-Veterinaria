@@ -93,7 +93,34 @@ namespace Capa_Datos
             }
         }
 
+        public List<string> ObtenerNombresMenus()
+        {
+            List<string> nombresMenus = new List<string>();
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    string query = "SELECT nombre_menu FROM Permisos";
+                    SqlCommand cmd = new SqlCommand(query, oconexion);
+                    cmd.CommandType = CommandType.Text;
 
+                    oconexion.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            nombresMenus.Add(dr["nombre_menu"].ToString());
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    nombresMenus = new List<string>();
+                }
+            }
+            return nombresMenus;
+        }
     }
 }
 

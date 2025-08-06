@@ -17,10 +17,9 @@ namespace Capa_Datos
             {
                 try
                 {
-                    string query = "ListarUsuarios"; 
-
-                    SqlCommand cmd = new SqlCommand(query, oconexion);
-                    cmd.CommandType = CommandType.Text;
+                    // Usar el procedimiento almacenado
+                    SqlCommand cmd = new SqlCommand("ListarUsuarios", oconexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     oconexion.Open();
 
@@ -31,30 +30,27 @@ namespace Capa_Datos
                             lista.Add(new Usuario()
                             {
                                 Id_usuario = Convert.ToInt32(dr["Id_usuario"]),
-                                carnet = Convert.ToInt32(dr["Carnet"]),
-                                nombres = dr["Nombres"].ToString(),
-                                apellidos = dr["Apellidos"].ToString(),
-                                correo = dr["Correo"].ToString(),
-                                clave = dr["Clave"].ToString(),
-
+                                carnet = Convert.ToInt32(dr["carnet"]),
+                                nombres = dr["nombres"].ToString(),
+                                apellidos = dr["apellidos"].ToString(),
+                                correo = dr["correo"].ToString(),
+                                clave = dr["clave"].ToString(),
                                 oRol = new Rol
                                 {
                                     Id_rol = Convert.ToInt32(dr["Id_rol"]),
-
+                                    // El procedimiento almacenado no devuelve el nombre del rol, solo el ID
                                 },
                                 oEmpleado = new Empleado
                                 {
                                     Id_empleado = Convert.ToInt32(dr["Id_empleado"]),
-
+                                    // El procedimiento almacenado no devuelve el nombre del empleado, solo el ID
                                 }
-
-                            }) ;
+                            });
                         }
                     }
                 }
-                catch (Exception )
+                catch (Exception)
                 {
-                    
                     lista = new List<Usuario>();
                 }
             }

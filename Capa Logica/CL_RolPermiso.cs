@@ -5,20 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using Capa_Entidad;
-
-
 using Capa_Datos;
-
-
+using static Capa_Entidad.RolPermiso;
 
 namespace Capa_Logica
 {
-
     public class CL_RolPermiso
     {
         private CD_RolPermiso dataLayer = new CD_RolPermiso();
 
-        public List<RolPermiso> ObtenerPermisosPorRol(int idRol)
+        // AQUÍ ESTÁ EL CAMBIO. El tipo de retorno debe ser List<PermisoConRol>
+        // Reemplaza el método existente con este:
+        public List<PermisoConRol> ObtenerPermisosPorRol(int idRol)
         {
             return dataLayer.ObtenerPermisosPorRol(idRol);
         }
@@ -33,6 +31,4 @@ namespace Capa_Logica
             dataLayer.QuitarPermiso(idRol, idPermiso);
         }
     }
-
 }
-

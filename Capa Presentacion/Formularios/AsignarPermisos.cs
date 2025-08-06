@@ -18,7 +18,7 @@ namespace Capa_Presentacion.Formularios
 
         private CL_RolPermiso RolPermiso = new CL_RolPermiso();
         private int IdRolSeleccionado;
-
+        private List<Permisos> todosLosPermisos;
         public AsignarPermisos()
         {
             InitializeComponent();
@@ -51,17 +51,18 @@ namespace Capa_Presentacion.Formularios
 
         private void cboROL_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (cboROL.SelectedValue != null && cboROL.SelectedValue is int)
             {
-                IdRolSeleccionado = (int)cboROL.SelectedValue; // Convertimos correctamente a entero
-                CargarPermisosPorRol(IdRolSeleccionado);
+                IdRolSeleccionado = (int)cboROL.SelectedValue;
+                ActualizarPermisosDeRol(IdRolSeleccionado);
             }
             else
             {
-                IdRolSeleccionado = 0; // En caso de que no haya un valor seleccionado válido
+                IdRolSeleccionado = 0;
+                dgvROlPermisos.Rows.Clear();
+                // Llama a CargarTodosLosPermisos() para restablecer la grilla.
+                CargarTodosLosPermisos();
             }
-
         }
 
         private void btnGuardarCambios_Click(object sender, EventArgs e)
@@ -104,23 +105,59 @@ namespace Capa_Presentacion.Formularios
 
         private void AsignarPermisos_Load(object sender, EventArgs e)
         {
+            // Carga todos los roles en el ComboBox
+            CargarRoles();
+            // Carga todos los permisos en la variable global
+            CargarTodosLosPermisos();
+        }
+
+        private void CargarTodosLosPermisos()
+        {
+            // Obtener todos los permisos de la base de datos.
+            todosLosPermisos = new CL_Permisos().ListarPermisos();
+
+            // Limpiar las filas y columnas existentes del DataGridView
             dgvROlPermisos.Columns.Clear();
+            dgvROlPermisos.Rows.Clear();
 
-            // Columna Id_permiso
-            DataGridViewTextBoxColumn colId_permiso = new DataGridViewTextBoxColumn();
-            colId_permiso.Name = "Id_permiso";
-            colId_permiso.HeaderText = "ID Permiso";
-            colId_permiso.Visible = true; // Oculta esta columna
-            dgvROlPermisos.Columns.Add(colId_permiso);
+            // Configurar las columnas
+            dgvROlPermisos.Columns.Add("Id_permiso", "ID Permiso");
+            dgvROlPermisos.Columns.Add("Nombre_Menu", "Nombre del Permiso");
 
-            // Columna Asignado (checkbox)
+            // Agregar la columna de checkbox
             DataGridViewCheckBoxColumn colAsignado = new DataGridViewCheckBoxColumn();
             colAsignado.Name = "Asignado";
             colAsignado.HeaderText = "Asignado";
             dgvROlPermisos.Columns.Add(colAsignado);
 
-            
+            // Oculta la columna del ID si no quieres que sea visible
+            dgvROlPermisos.Columns["Id_permiso"].Visible = false;
 
+            // Llenar la grilla con todos los permisos
+            foreach (var permiso in todosLosPermisos)
+            {
+                dgvROlPermisos.Rows.Add(permiso.Id_permiso, permiso.nombre_menu, false); // El tercer parámetro es el estado inicial del checkbox
+            }
+        }
+        private void ActualizarPermisosDeRol(int idRol)
+        {
+            // Obtener los permisos asignados a este rol específico
+            List<PermisoConRol> permisosAsignados = RolPermiso.ObtenerPermisosPorRol(idRol);
+
+            // Recorrer todas las filas de la grilla
+            foreach (DataGridViewRow row in dgvROlPermisos.Rows)
+            {
+                if (row.Cells["Id_permiso"].Value != null)
+                {
+                    int idPermisoEnGrilla = Convert.ToInt32(row.Cells["Id_permiso"].Value);
+
+                    // Buscar si este permiso está en la lista de permisos asignados
+                    bool estaAsignado = permisosAsignados.Any(p => p.Id_permiso == idPermisoEnGrilla);
+
+                    // Actualizar el estado del checkbox
+                    row.Cells["Asignado"].Value = estaAsignado;
+                }
+            }
         }
     }
 }
