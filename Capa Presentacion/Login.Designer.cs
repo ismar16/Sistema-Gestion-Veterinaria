@@ -75,6 +75,7 @@ namespace Capa_Presentacion
             this.txtClave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtClave.Location = new System.Drawing.Point(328, 163);
             this.txtClave.Name = "txtClave";
+            this.txtClave.PasswordChar = '*';
             this.txtClave.Size = new System.Drawing.Size(306, 22);
             this.txtClave.TabIndex = 3;
             // 
@@ -107,12 +108,13 @@ namespace Capa_Presentacion
             this.label4.BackColor = System.Drawing.Color.Blue;
             this.label4.Font = new System.Drawing.Font("Lucida Fax", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(28, 199);
+            this.label4.Location = new System.Drawing.Point(28, 213);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(250, 23);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Veterinary  Shaday\r\n";
-           
+            this.label4.Text = "Veterinaria";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // btningresar
             // 
@@ -157,7 +159,9 @@ namespace Capa_Presentacion
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "INICIO DE SESION ";
+            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.loginpng)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

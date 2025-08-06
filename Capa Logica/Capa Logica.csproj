@@ -49,13 +49,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CL_Categorias.cs" />
+    <Compile Include="CL_Compras.cs" />
+    <Compile Include="CL_Empleado.cs" />
+    <Compile Include="CL_Historial.cs" />
+    <Compile Include="CL_Mascotas.cs" />
     <Compile Include="CL_Permisos.cs" />
+    <Compile Include="CL_Popietario.cs" />
+    <Compile Include="CL_Producto.cs" />
     <Compile Include="CL_Rol.cs" />
     <Compile Include="CL_RolPermiso.cs" />
     <Compile Include="CL_Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

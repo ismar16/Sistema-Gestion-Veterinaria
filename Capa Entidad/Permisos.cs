@@ -10,6 +10,7 @@ namespace Capa_Entidad
     {
         public int Id_permiso { get; set; }
         public string  nombre_menu { get; set; }
+        public int? Parent_id { get; set; } 
         public string fecha_registro { get; set; }
        
     }

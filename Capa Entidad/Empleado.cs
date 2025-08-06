@@ -12,8 +12,8 @@ namespace Capa_Entidad
         public string nombre_empleado { get; set; }
         public string apellido_empleado { get; set; }
         public string correo_empleado { get; set; }
-        public string  telefono_empelado { get; set; }
+        public string  telefono_empleado { get; set; }
         public string cargo_empleado { get; set; }
-        public string salario_empleado { get; set; }
+        public decimal salario_empleado { get; set; }
     }
 }

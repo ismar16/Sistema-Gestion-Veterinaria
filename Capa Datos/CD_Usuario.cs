@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace Capa_Datos
 {
@@ -13,51 +14,47 @@ namespace Capa_Datos
         {
             List<Usuario> lista = new List<Usuario>();
             using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
-
-
             {
                 try
                 {
-                    string query = "Select Id_usuario,Nombres,Apellidos,Correo,Clave from Usuario";
+                    string query = "ListarUsuarios"; 
+
                     SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
 
                     oconexion.Open();
 
-                    using (SqlDataReader dr= cmd.ExecuteReader())
+                    using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
                             lista.Add(new Usuario()
                             {
                                 Id_usuario = Convert.ToInt32(dr["Id_usuario"]),
+                                carnet = Convert.ToInt32(dr["Carnet"]),
                                 nombres = dr["Nombres"].ToString(),
                                 apellidos = dr["Apellidos"].ToString(),
-                                correo = dr ["Clave"].ToString(),
-                                clave = dr ["Clave"].ToString(),
+                                correo = dr["Correo"].ToString(),
+                                clave = dr["Clave"].ToString(),
 
                                 oRol = new Rol
                                 {
-                                    Id_rol = dr.GetInt32(6),
-                                    nombre_rol = dr.GetString(7)
+                                    Id_rol = Convert.ToInt32(dr["Id_rol"]),
+
                                 },
                                 oEmpleado = new Empleado
                                 {
-                                    Id_empleado = dr.GetInt32(8),
-                                    nombre_empleado = dr.GetString(9)
+                                    Id_empleado = Convert.ToInt32(dr["Id_empleado"]),
+
                                 }
 
                             }) ;
-                            
                         }
-
                     }
                 }
-
-
-                catch (Exception e)
+                catch (Exception )
                 {
-
+                    
                     lista = new List<Usuario>();
                 }
             }
@@ -69,13 +66,14 @@ namespace Capa_Datos
 
 
         // Método para insertar un usuario
-        public void InsertarUsuario(int carnet, string nombres, string apellidos, string correo, string clave, int Id_rol, int Id_empleado)
+        public void InsertarUsuario( int carnet, string nombres, string apellidos, string correo, string clave, int Id_rol, int Id_empleado)
         {
             using (SqlConnection connection = new SqlConnection(Conexion.cadena))
             {
                 SqlCommand command = new SqlCommand("InsertarUsuario", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
+          
                 command.Parameters.AddWithValue("@carnet", carnet);
                 command.Parameters.AddWithValue("@nombres", nombres);
                 command.Parameters.AddWithValue("@apellidos", apellidos);

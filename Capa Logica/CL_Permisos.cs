@@ -17,44 +17,30 @@ namespace Capa_Logica
             return objcd_permiso.ListarPermisos();
 
         }
-        public void InsertarPermiso(string nombre)
+        public void InsertarPermiso(string nombre_menu, int? Parent_id)
         {
             // Puedes agregar validaciones aquí, si es necesario
-            if (string.IsNullOrWhiteSpace(nombre))
+            if (string.IsNullOrWhiteSpace(nombre_menu))
                 throw new ArgumentException("El nombre del permiso no puede estar vacío.");
 
-            objcd_permiso.InsertarPermisos(nombre);
+            objcd_permiso.InsertarPermisos(nombre_menu, Parent_id);
 
-            // Validar si el nombre del menú es válido
-            if (!EsMenuValido(nombre))
-                throw new ArgumentException("El nombre del menú no es válido.");
-
+          
         }
 
-        // Método privado para validar si el nombre del menú es válido
-        private bool EsMenuValido(string nombre_menu)
+
+
+        public void EliminarPermiso(int Id_permiso)
         {
-            // Lista de menús predefinidos. Esta lista puede ser más dinámica, dependiendo de tu aplicación.
-            var menusValidos = new List<string> { "Acceso y Personal", "Usuarios", "Empleados", "Compras", "Registrar compra", "Venta", "Registrar Venta", "Productos", "Inventario", "Categoria de productos", "Citas", "Historial Clinico","Mascotas",
-                "Propietarios","Pagor por servicios","Configuración","Roles","Permisos","Asignar Permisos", "Reportes","Acerca de" };
-
-            // Verificar si el nombre del menú está en la lista de menús válidos
-            return menusValidos.Contains(nombre_menu);
-        }
-
-        public bool EliminarPermiso(int Id_permiso)
-        {
-
+            if (Id_permiso <= 0)
             {
-
-                // Llamar al método de la capa de datos para eliminar el permiso
-
-
-                return objcd_permiso.EliminarPermiso(Id_permiso);
+                throw new ArgumentException("El ID del permiso debe ser mayor que cero.");
             }
+
+            objcd_permiso.EliminarPermiso(Id_permiso);
         }
 
- 
+
 
     }
 

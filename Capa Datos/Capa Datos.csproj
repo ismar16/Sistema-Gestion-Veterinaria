@@ -39,7 +39,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CD_Categoria.cs" />
+    <Compile Include="CD_Compras.cs" />
+    <Compile Include="CD_Empleados.cs" />
+    <Compile Include="CD_Historial.cs" />
+    <Compile Include="CD_Mascotas.cs" />
     <Compile Include="CD_Permisos.cs" />
+    <Compile Include="CD_Productos.cs" />
+    <Compile Include="CD_Propietarios.cs" />
     <Compile Include="CD_Rol.cs" />
     <Compile Include="CD_RolPermiso.cs" />
     <Compile Include="CD_Usuario.cs" />
