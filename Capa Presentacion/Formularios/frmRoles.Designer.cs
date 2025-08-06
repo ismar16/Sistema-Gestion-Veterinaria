@@ -65,9 +65,9 @@ namespace Capa_Presentacion
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(296, 49);
+            this.btnGuardar.Location = new System.Drawing.Point(296, 36);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.Size = new System.Drawing.Size(105, 49);
             this.btnGuardar.TabIndex = 3;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -77,7 +77,7 @@ namespace Capa_Presentacion
             // 
             this.btnEliminar.Location = new System.Drawing.Point(296, 95);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.Size = new System.Drawing.Size(105, 51);
             this.btnEliminar.TabIndex = 4;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -89,14 +89,14 @@ namespace Capa_Presentacion
             this.dgvRol.Name = "dgvRol";
             this.dgvRol.RowHeadersWidth = 51;
             this.dgvRol.RowTemplate.Height = 24;
-            this.dgvRol.Size = new System.Drawing.Size(368, 311);
+            this.dgvRol.Size = new System.Drawing.Size(398, 311);
             this.dgvRol.TabIndex = 5;
             // 
             // frmRoles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 495);
+            this.ClientSize = new System.Drawing.Size(413, 495);
             this.Controls.Add(this.dgvRol);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnGuardar);

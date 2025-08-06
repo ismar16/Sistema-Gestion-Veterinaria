@@ -17,5 +17,8 @@ namespace Capa_Entidad
         public Rol oRol { get; set; }
         public Empleado oEmpleado { get; set; }
 
+      
     }
+
 }
+

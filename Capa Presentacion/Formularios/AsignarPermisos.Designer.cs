@@ -61,14 +61,14 @@ namespace Capa_Presentacion.Formularios
             this.dgvROlPermisos.Name = "dgvROlPermisos";
             this.dgvROlPermisos.RowHeadersWidth = 51;
             this.dgvROlPermisos.RowTemplate.Height = 24;
-            this.dgvROlPermisos.Size = new System.Drawing.Size(315, 300);
+            this.dgvROlPermisos.Size = new System.Drawing.Size(391, 300);
             this.dgvROlPermisos.TabIndex = 2;
             // 
             // btnGuardarCambios
             // 
-            this.btnGuardarCambios.Location = new System.Drawing.Point(83, 465);
+            this.btnGuardarCambios.Location = new System.Drawing.Point(114, 455);
             this.btnGuardarCambios.Name = "btnGuardarCambios";
-            this.btnGuardarCambios.Size = new System.Drawing.Size(134, 54);
+            this.btnGuardarCambios.Size = new System.Drawing.Size(186, 65);
             this.btnGuardarCambios.TabIndex = 3;
             this.btnGuardarCambios.Text = "Guardar Cambios";
             this.btnGuardarCambios.UseVisualStyleBackColor = true;
@@ -78,7 +78,7 @@ namespace Capa_Presentacion.Formularios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(339, 542);
+            this.ClientSize = new System.Drawing.Size(429, 542);
             this.Controls.Add(this.btnGuardarCambios);
             this.Controls.Add(this.dgvROlPermisos);
             this.Controls.Add(this.cboROL);

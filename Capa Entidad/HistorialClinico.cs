@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Capa_Entidad
 {
-    class HistorialClinico
+  public   class Historialclinico
     {
         public int Id_historial { get; set; }
-        public DateTime descripcion { get; set; }
+        public DateTime fecha { get; set; }
+        public string descripcion  { get; set; }
         public Mascotas oMascotas { get; set; }
         public Empleado oEmpleado { get; set; }
         public string diagnostico { get; set; }

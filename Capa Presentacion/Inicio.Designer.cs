@@ -30,250 +30,198 @@ namespace Capa_Presentacion
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
-            this.Menu = new System.Windows.Forms.MenuStrip();
+            this.MenuContendor = new System.Windows.Forms.MenuStrip();
             this.menuacceso = new FontAwesome.Sharp.IconMenuItem();
-            this.menuUsuario = new FontAwesome.Sharp.IconMenuItem();
-            this.menuEmpleados = new FontAwesome.Sharp.IconMenuItem();
+            this.SubmenuUsuario = new FontAwesome.Sharp.IconMenuItem();
+            this.SubmenuEmpleados = new FontAwesome.Sharp.IconMenuItem();
             this.menuCompras = new FontAwesome.Sharp.IconMenuItem();
-            this.menuRegistrarCompra = new FontAwesome.Sharp.IconMenuItem();
-            this.menuVentas = new FontAwesome.Sharp.IconMenuItem();
-            this.menuRegistrarVenta = new FontAwesome.Sharp.IconMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.SubmenuRegistrarCompra = new FontAwesome.Sharp.IconMenuItem();
             this.menuProductos = new FontAwesome.Sharp.IconMenuItem();
-            this.menuInventario = new FontAwesome.Sharp.IconMenuItem();
-            this.menuCategoria = new FontAwesome.Sharp.IconMenuItem();
+            this.SubmenuInventario = new FontAwesome.Sharp.IconMenuItem();
+            this.SubmenuCategoria = new FontAwesome.Sharp.IconMenuItem();
             this.menuGestionClinica = new FontAwesome.Sharp.IconMenuItem();
-            this.menuCitas = new FontAwesome.Sharp.IconMenuItem();
-            this.menuHistorial = new FontAwesome.Sharp.IconMenuItem();
-            this.menuMascotas = new FontAwesome.Sharp.IconMenuItem();
-            this.menuClientes = new FontAwesome.Sharp.IconMenuItem();
-            this.menuPagoServicios = new FontAwesome.Sharp.IconMenuItem();
-            this.menuReportes = new FontAwesome.Sharp.IconMenuItem();
-            this.menuAcercaDe = new FontAwesome.Sharp.IconMenuItem();
+            this.SubmenuHistorial = new FontAwesome.Sharp.IconMenuItem();
+            this.SubmenuMascotas = new FontAwesome.Sharp.IconMenuItem();
+            this.SubmenuClientes = new FontAwesome.Sharp.IconMenuItem();
             this.menuConfiguracion = new FontAwesome.Sharp.IconMenuItem();
-            this.menuRol = new FontAwesome.Sharp.IconMenuItem();
-            this.menuPermisos = new FontAwesome.Sharp.IconMenuItem();
+            this.SubmenuRol = new FontAwesome.Sharp.IconMenuItem();
+            this.SubmenuPermisos = new FontAwesome.Sharp.IconMenuItem();
+            this.SubmenuAsignacion = new FontAwesome.Sharp.IconMenuItem();
             this.menuTitulo = new System.Windows.Forms.MenuStrip();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblusuario = new System.Windows.Forms.Label();
             this.PContenedor = new System.Windows.Forms.Panel();
-            this.menuAsignacion = new FontAwesome.Sharp.IconMenuItem();
-            this.Menu.SuspendLayout();
+            this.MenuContendor.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Menu
+            // MenuContendor
             // 
-            resources.ApplyResources(this.Menu, "Menu");
-            this.Menu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.Menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            resources.ApplyResources(this.MenuContendor, "MenuContendor");
+            this.MenuContendor.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.MenuContendor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuacceso,
             this.menuCompras,
-            this.menuVentas,
             this.menuProductos,
             this.menuGestionClinica,
-            this.menuConfiguracion,
-            this.menuReportes,
-            this.menuAcercaDe});
-            this.Menu.Name = "Menu";
-            this.Menu.Stretch = false;
+            this.menuConfiguracion});
+            this.MenuContendor.Name = "MenuContendor";
+            this.MenuContendor.Stretch = false;
             // 
             // menuacceso
             // 
             this.menuacceso.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuUsuario,
-            this.menuEmpleados});
+            this.SubmenuUsuario,
+            this.SubmenuEmpleados});
             this.menuacceso.IconChar = FontAwesome.Sharp.IconChar.User;
             this.menuacceso.IconColor = System.Drawing.Color.Black;
             this.menuacceso.IconFont = FontAwesome.Sharp.IconFont.Auto;
             resources.ApplyResources(this.menuacceso, "menuacceso");
             this.menuacceso.Name = "menuacceso";
             // 
-            // menuUsuario
+            // SubmenuUsuario
             // 
-            this.menuUsuario.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.menuUsuario.IconColor = System.Drawing.Color.Black;
-            this.menuUsuario.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuUsuario.Name = "menuUsuario";
-            resources.ApplyResources(this.menuUsuario, "menuUsuario");
-            this.menuUsuario.Click += new System.EventHandler(this.menuUsuario_Click);
+            this.SubmenuUsuario.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.SubmenuUsuario.IconColor = System.Drawing.Color.Black;
+            this.SubmenuUsuario.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SubmenuUsuario.Name = "SubmenuUsuario";
+            resources.ApplyResources(this.SubmenuUsuario, "SubmenuUsuario");
+            this.SubmenuUsuario.Click += new System.EventHandler(this.menuUsuario_Click);
             // 
-            // menuEmpleados
+            // SubmenuEmpleados
             // 
-            this.menuEmpleados.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.menuEmpleados.IconColor = System.Drawing.Color.Black;
-            this.menuEmpleados.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuEmpleados.Name = "menuEmpleados";
-            resources.ApplyResources(this.menuEmpleados, "menuEmpleados");
+            this.SubmenuEmpleados.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.SubmenuEmpleados.IconColor = System.Drawing.Color.Black;
+            this.SubmenuEmpleados.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SubmenuEmpleados.Name = "SubmenuEmpleados";
+            resources.ApplyResources(this.SubmenuEmpleados, "SubmenuEmpleados");
+            this.SubmenuEmpleados.Click += new System.EventHandler(this.SubmenuEmpleados_Click);
             // 
             // menuCompras
             // 
             this.menuCompras.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuRegistrarCompra});
+            this.SubmenuRegistrarCompra});
             this.menuCompras.IconChar = FontAwesome.Sharp.IconChar.CartPlus;
             this.menuCompras.IconColor = System.Drawing.Color.Black;
             this.menuCompras.IconFont = FontAwesome.Sharp.IconFont.Auto;
             resources.ApplyResources(this.menuCompras, "menuCompras");
             this.menuCompras.Name = "menuCompras";
             // 
-            // menuRegistrarCompra
+            // SubmenuRegistrarCompra
             // 
-            this.menuRegistrarCompra.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.menuRegistrarCompra.IconColor = System.Drawing.Color.Black;
-            this.menuRegistrarCompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuRegistrarCompra.Name = "menuRegistrarCompra";
-            resources.ApplyResources(this.menuRegistrarCompra, "menuRegistrarCompra");
-            // 
-            // menuVentas
-            // 
-            this.menuVentas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuRegistrarVenta,
-            this.toolStripSeparator1});
-            this.menuVentas.IconChar = FontAwesome.Sharp.IconChar.CreditCardAlt;
-            this.menuVentas.IconColor = System.Drawing.Color.Black;
-            this.menuVentas.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            resources.ApplyResources(this.menuVentas, "menuVentas");
-            this.menuVentas.Name = "menuVentas";
-            this.menuVentas.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
-            // 
-            // menuRegistrarVenta
-            // 
-            this.menuRegistrarVenta.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.menuRegistrarVenta.IconColor = System.Drawing.Color.Black;
-            this.menuRegistrarVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuRegistrarVenta.Name = "menuRegistrarVenta";
-            resources.ApplyResources(this.menuRegistrarVenta, "menuRegistrarVenta");
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            this.SubmenuRegistrarCompra.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.SubmenuRegistrarCompra.IconColor = System.Drawing.Color.Black;
+            this.SubmenuRegistrarCompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SubmenuRegistrarCompra.Name = "SubmenuRegistrarCompra";
+            resources.ApplyResources(this.SubmenuRegistrarCompra, "SubmenuRegistrarCompra");
+            this.SubmenuRegistrarCompra.Click += new System.EventHandler(this.SubmenuRegistrarCompra_Click);
             // 
             // menuProductos
             // 
             this.menuProductos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuInventario,
-            this.menuCategoria});
+            this.SubmenuInventario,
+            this.SubmenuCategoria});
             this.menuProductos.IconChar = FontAwesome.Sharp.IconChar.Box;
             this.menuProductos.IconColor = System.Drawing.Color.Black;
             this.menuProductos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             resources.ApplyResources(this.menuProductos, "menuProductos");
             this.menuProductos.Name = "menuProductos";
             // 
-            // menuInventario
+            // SubmenuInventario
             // 
-            this.menuInventario.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.menuInventario.IconColor = System.Drawing.Color.Black;
-            this.menuInventario.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuInventario.Name = "menuInventario";
-            resources.ApplyResources(this.menuInventario, "menuInventario");
+            this.SubmenuInventario.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.SubmenuInventario.IconColor = System.Drawing.Color.Black;
+            this.SubmenuInventario.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SubmenuInventario.Name = "SubmenuInventario";
+            resources.ApplyResources(this.SubmenuInventario, "SubmenuInventario");
+            this.SubmenuInventario.Click += new System.EventHandler(this.SubmenuInventario_Click);
             // 
-            // menuCategoria
+            // SubmenuCategoria
             // 
-            this.menuCategoria.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.menuCategoria.IconColor = System.Drawing.Color.Black;
-            this.menuCategoria.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuCategoria.Name = "menuCategoria";
-            resources.ApplyResources(this.menuCategoria, "menuCategoria");
+            this.SubmenuCategoria.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.SubmenuCategoria.IconColor = System.Drawing.Color.Black;
+            this.SubmenuCategoria.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SubmenuCategoria.Name = "SubmenuCategoria";
+            resources.ApplyResources(this.SubmenuCategoria, "SubmenuCategoria");
+            this.SubmenuCategoria.Click += new System.EventHandler(this.SubmenuCategoria_Click);
             // 
             // menuGestionClinica
             // 
             this.menuGestionClinica.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuCitas,
-            this.menuHistorial,
-            this.menuMascotas,
-            this.menuClientes,
-            this.menuPagoServicios});
+            this.SubmenuHistorial,
+            this.SubmenuMascotas,
+            this.SubmenuClientes});
             this.menuGestionClinica.IconChar = FontAwesome.Sharp.IconChar.HospitalWide;
             this.menuGestionClinica.IconColor = System.Drawing.Color.Black;
             this.menuGestionClinica.IconFont = FontAwesome.Sharp.IconFont.Auto;
             resources.ApplyResources(this.menuGestionClinica, "menuGestionClinica");
             this.menuGestionClinica.Name = "menuGestionClinica";
             // 
-            // menuCitas
+            // SubmenuHistorial
             // 
-            this.menuCitas.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.menuCitas.IconColor = System.Drawing.Color.Black;
-            this.menuCitas.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuCitas.Name = "menuCitas";
-            resources.ApplyResources(this.menuCitas, "menuCitas");
+            this.SubmenuHistorial.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.SubmenuHistorial.IconColor = System.Drawing.Color.Black;
+            this.SubmenuHistorial.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SubmenuHistorial.Name = "SubmenuHistorial";
+            resources.ApplyResources(this.SubmenuHistorial, "SubmenuHistorial");
+            this.SubmenuHistorial.Click += new System.EventHandler(this.SubmenuHistorial_Click);
             // 
-            // menuHistorial
+            // SubmenuMascotas
             // 
-            this.menuHistorial.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.menuHistorial.IconColor = System.Drawing.Color.Black;
-            this.menuHistorial.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuHistorial.Name = "menuHistorial";
-            resources.ApplyResources(this.menuHistorial, "menuHistorial");
+            this.SubmenuMascotas.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.SubmenuMascotas.IconColor = System.Drawing.Color.Black;
+            this.SubmenuMascotas.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SubmenuMascotas.Name = "SubmenuMascotas";
+            resources.ApplyResources(this.SubmenuMascotas, "SubmenuMascotas");
+            this.SubmenuMascotas.Click += new System.EventHandler(this.SubmenuMascotas_Click);
             // 
-            // menuMascotas
+            // SubmenuClientes
             // 
-            this.menuMascotas.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.menuMascotas.IconColor = System.Drawing.Color.Black;
-            this.menuMascotas.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuMascotas.Name = "menuMascotas";
-            resources.ApplyResources(this.menuMascotas, "menuMascotas");
-            // 
-            // menuClientes
-            // 
-            this.menuClientes.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.menuClientes.IconColor = System.Drawing.Color.Black;
-            this.menuClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuClientes.Name = "menuClientes";
-            resources.ApplyResources(this.menuClientes, "menuClientes");
-            // 
-            // menuPagoServicios
-            // 
-            this.menuPagoServicios.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.menuPagoServicios.IconColor = System.Drawing.Color.Black;
-            this.menuPagoServicios.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuPagoServicios.Name = "menuPagoServicios";
-            resources.ApplyResources(this.menuPagoServicios, "menuPagoServicios");
-            // 
-            // menuReportes
-            // 
-            this.menuReportes.IconChar = FontAwesome.Sharp.IconChar.FileInvoice;
-            this.menuReportes.IconColor = System.Drawing.Color.Black;
-            this.menuReportes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            resources.ApplyResources(this.menuReportes, "menuReportes");
-            this.menuReportes.Name = "menuReportes";
-            // 
-            // menuAcercaDe
-            // 
-            this.menuAcercaDe.IconChar = FontAwesome.Sharp.IconChar.CircleInfo;
-            this.menuAcercaDe.IconColor = System.Drawing.Color.Black;
-            this.menuAcercaDe.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            resources.ApplyResources(this.menuAcercaDe, "menuAcercaDe");
-            this.menuAcercaDe.Name = "menuAcercaDe";
+            this.SubmenuClientes.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.SubmenuClientes.IconColor = System.Drawing.Color.Black;
+            this.SubmenuClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SubmenuClientes.Name = "SubmenuClientes";
+            resources.ApplyResources(this.SubmenuClientes, "SubmenuClientes");
+            this.SubmenuClientes.Click += new System.EventHandler(this.SubmenuClientes_Click);
             // 
             // menuConfiguracion
             // 
             this.menuConfiguracion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuRol,
-            this.menuPermisos,
-            this.menuAsignacion});
+            this.SubmenuRol,
+            this.SubmenuPermisos,
+            this.SubmenuAsignacion});
             this.menuConfiguracion.IconChar = FontAwesome.Sharp.IconChar.None;
             this.menuConfiguracion.IconColor = System.Drawing.Color.Black;
             this.menuConfiguracion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.menuConfiguracion.Name = "menuConfiguracion";
             resources.ApplyResources(this.menuConfiguracion, "menuConfiguracion");
             // 
-            // menuRol
+            // SubmenuRol
             // 
-            this.menuRol.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.menuRol.IconColor = System.Drawing.Color.Black;
-            this.menuRol.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuRol.Name = "menuRol";
-            resources.ApplyResources(this.menuRol, "menuRol");
-            this.menuRol.Click += new System.EventHandler(this.menuRol_Click);
+            this.SubmenuRol.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.SubmenuRol.IconColor = System.Drawing.Color.Black;
+            this.SubmenuRol.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SubmenuRol.Name = "SubmenuRol";
+            resources.ApplyResources(this.SubmenuRol, "SubmenuRol");
+            this.SubmenuRol.Click += new System.EventHandler(this.menuRol_Click);
             // 
-            // menuPermisos
+            // SubmenuPermisos
             // 
-            this.menuPermisos.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.menuPermisos.IconColor = System.Drawing.Color.Black;
-            this.menuPermisos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuPermisos.Name = "menuPermisos";
-            resources.ApplyResources(this.menuPermisos, "menuPermisos");
+            this.SubmenuPermisos.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.SubmenuPermisos.IconColor = System.Drawing.Color.Black;
+            this.SubmenuPermisos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SubmenuPermisos.Name = "SubmenuPermisos";
+            resources.ApplyResources(this.SubmenuPermisos, "SubmenuPermisos");
+            this.SubmenuPermisos.Click += new System.EventHandler(this.SubmenuPermisos_Click);
+            // 
+            // SubmenuAsignacion
+            // 
+            this.SubmenuAsignacion.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.SubmenuAsignacion.IconColor = System.Drawing.Color.Black;
+            this.SubmenuAsignacion.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SubmenuAsignacion.Name = "SubmenuAsignacion";
+            resources.ApplyResources(this.SubmenuAsignacion, "SubmenuAsignacion");
+            this.SubmenuAsignacion.Click += new System.EventHandler(this.SubmenuAsignacion_Click);
             // 
             // menuTitulo
             // 
@@ -281,6 +229,7 @@ namespace Capa_Presentacion
             this.menuTitulo.BackColor = System.Drawing.Color.Blue;
             this.menuTitulo.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuTitulo.Name = "menuTitulo";
+            this.menuTitulo.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuTitulo_ItemClicked);
             // 
             // label1
             // 
@@ -293,11 +242,13 @@ namespace Capa_Presentacion
             // 
             this.label2.BackColor = System.Drawing.Color.Blue;
             resources.ApplyResources(this.label2, "label2");
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label2.Name = "label2";
             // 
             // lblusuario
             // 
             this.lblusuario.BackColor = System.Drawing.Color.Blue;
+            this.lblusuario.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             resources.ApplyResources(this.lblusuario, "lblusuario");
             this.lblusuario.Name = "lblusuario";
             // 
@@ -306,14 +257,6 @@ namespace Capa_Presentacion
             this.PContenedor.BackColor = System.Drawing.Color.LightSteelBlue;
             resources.ApplyResources(this.PContenedor, "PContenedor");
             this.PContenedor.Name = "PContenedor";
-            // 
-            // menuAsignacion
-            // 
-            this.menuAsignacion.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.menuAsignacion.IconColor = System.Drawing.Color.Black;
-            this.menuAsignacion.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuAsignacion.Name = "menuAsignacion";
-            resources.ApplyResources(this.menuAsignacion, "menuAsignacion");
             // 
             // Inicio
             // 
@@ -324,48 +267,41 @@ namespace Capa_Presentacion
             this.Controls.Add(this.lblusuario);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.Menu);
+            this.Controls.Add(this.MenuContendor);
             this.Controls.Add(this.menuTitulo);
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.Menu;
+            this.MainMenuStrip = this.MenuContendor;
             this.Name = "Inicio";
             this.Load += new System.EventHandler(this.Inicio_Load);
-            this.Menu.ResumeLayout(false);
-            this.Menu.PerformLayout();
+            this.MenuContendor.ResumeLayout(false);
+            this.MenuContendor.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip Menu;
+        private System.Windows.Forms.MenuStrip MenuContendor;
         private System.Windows.Forms.MenuStrip menuTitulo;
         private System.Windows.Forms.Label label1;
         private FontAwesome.Sharp.IconMenuItem menuacceso;
         private FontAwesome.Sharp.IconMenuItem menuCompras;
-        private FontAwesome.Sharp.IconMenuItem menuVentas;
-        private FontAwesome.Sharp.IconMenuItem menuUsuario;
-        private FontAwesome.Sharp.IconMenuItem menuEmpleados;
-        private FontAwesome.Sharp.IconMenuItem menuRegistrarCompra;
-        private FontAwesome.Sharp.IconMenuItem menuRegistrarVenta;
+        private FontAwesome.Sharp.IconMenuItem SubmenuUsuario;
+        private FontAwesome.Sharp.IconMenuItem SubmenuEmpleados;
+        private FontAwesome.Sharp.IconMenuItem SubmenuRegistrarCompra;
         private FontAwesome.Sharp.IconMenuItem menuProductos;
-        private FontAwesome.Sharp.IconMenuItem menuInventario;
-        private FontAwesome.Sharp.IconMenuItem menuCategoria;
+        private FontAwesome.Sharp.IconMenuItem SubmenuInventario;
+        private FontAwesome.Sharp.IconMenuItem SubmenuCategoria;
         private FontAwesome.Sharp.IconMenuItem menuGestionClinica;
-        private FontAwesome.Sharp.IconMenuItem menuCitas;
-        private FontAwesome.Sharp.IconMenuItem menuHistorial;
-        private FontAwesome.Sharp.IconMenuItem menuMascotas;
-        private FontAwesome.Sharp.IconMenuItem menuClientes;
-        private FontAwesome.Sharp.IconMenuItem menuReportes;
-        private FontAwesome.Sharp.IconMenuItem menuAcercaDe;
-        private FontAwesome.Sharp.IconMenuItem menuPagoServicios;
+        private FontAwesome.Sharp.IconMenuItem SubmenuHistorial;
+        private FontAwesome.Sharp.IconMenuItem SubmenuMascotas;
+        private FontAwesome.Sharp.IconMenuItem SubmenuClientes;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblusuario;
         private System.Windows.Forms.Panel PContenedor;
         private FontAwesome.Sharp.IconMenuItem menuConfiguracion;
-        private FontAwesome.Sharp.IconMenuItem menuRol;
-        private FontAwesome.Sharp.IconMenuItem menuPermisos;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private FontAwesome.Sharp.IconMenuItem menuAsignacion;
+        private FontAwesome.Sharp.IconMenuItem SubmenuRol;
+        private FontAwesome.Sharp.IconMenuItem SubmenuPermisos;
+        private FontAwesome.Sharp.IconMenuItem SubmenuAsignacion;
     }
 }

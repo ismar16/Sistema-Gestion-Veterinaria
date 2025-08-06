@@ -41,8 +41,9 @@
   <ItemGroup>
     <Compile Include="Categoria.cs" />
     <Compile Include="Citas.cs" />
+    <Compile Include="Compras.cs" />
     <Compile Include="Empleado.cs" />
-    <Compile Include="HistorialClinico.cs" />
+    <Compile Include="Historialclinico.cs" />
     <Compile Include="Inventario.cs" />
     <Compile Include="Mascotas.cs" />
     <Compile Include="PagoServicos.cs" />

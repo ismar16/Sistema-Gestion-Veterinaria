@@ -3,30 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 
-using Capa_Datos;
 using Capa_Entidad;
 
-
 namespace Capa_Datos
-
 {
-    public class CD_Rol
+   public class CD_Categoria
     {
 
-
-        public List<Rol> ListarRoles()
+        public List<Categoria> ListarCategorias()
         {
-            List<Rol> roles = new List<Rol>();
+            List<Categoria> categorias = new List<Categoria>();
 
             using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
             {
 
                 try
                 {
-                    string query = "Select Id_rol, nombre_rol from Rol";
+                    string query = "Select Id_categoria, nombre_categoria from Categoria";
                     SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
 
@@ -37,11 +33,11 @@ namespace Capa_Datos
 
                         while (dr.Read())
                         {
-                            roles.Add(new Rol()
+                            categorias.Add(new Categoria()
                             {
 
-                                Id_rol = Convert.ToInt32(dr["Id_rol"]),
-                                nombre_rol = dr["nombre_rol"].ToString(),
+                                Id_categoria = Convert.ToInt32(dr["Id_categoria"]),
+                                nombre_categoria = dr["nombre_categoria"].ToString(),
 
 
 
@@ -54,30 +50,29 @@ namespace Capa_Datos
                 }
                 catch (Exception )
                 {
-                    roles = new List<Rol>();
+                    categorias = new List<Categoria>();
                 }
             }
 
-            return roles;
+            return categorias;
         }
 
 
 
-        public void InsertarRol(string nombre)
+        public void InsertarCategorias(string nombre)
         {
             using (SqlConnection conexion = new SqlConnection(Conexion.cadena))
             {
-                SqlCommand command = new SqlCommand("InsertarRol", conexion);
+                SqlCommand command = new SqlCommand("InsertarCategoria", conexion);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@nombre_rol", nombre);
+                command.Parameters.AddWithValue("@nombre_categoria", nombre);
 
 
                 conexion.Open();
                 command.ExecuteNonQuery();
             }
         }
+
     }
-
 }
-

@@ -35,7 +35,7 @@ namespace Capa_Presentacion.Formularios
             this.btnGuardarP = new System.Windows.Forms.Button();
             this.btnEliminarP = new System.Windows.Forms.Button();
             this.dgvPermisos = new System.Windows.Forms.DataGridView();
-            this.btnReiniciar = new System.Windows.Forms.Button();
+            this.cboParentMenu = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPermisos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,9 +66,9 @@ namespace Capa_Presentacion.Formularios
             // 
             // btnGuardarP
             // 
-            this.btnGuardarP.Location = new System.Drawing.Point(298, 54);
+            this.btnGuardarP.Location = new System.Drawing.Point(58, 178);
             this.btnGuardarP.Name = "btnGuardarP";
-            this.btnGuardarP.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarP.Size = new System.Drawing.Size(122, 41);
             this.btnGuardarP.TabIndex = 4;
             this.btnGuardarP.Text = "Guardar";
             this.btnGuardarP.UseVisualStyleBackColor = true;
@@ -76,9 +76,9 @@ namespace Capa_Presentacion.Formularios
             // 
             // btnEliminarP
             // 
-            this.btnEliminarP.Location = new System.Drawing.Point(298, 105);
+            this.btnEliminarP.Location = new System.Drawing.Point(237, 178);
             this.btnEliminarP.Name = "btnEliminarP";
-            this.btnEliminarP.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarP.Size = new System.Drawing.Size(121, 41);
             this.btnEliminarP.TabIndex = 5;
             this.btnEliminarP.Text = "Eliminar";
             this.btnEliminarP.UseVisualStyleBackColor = true;
@@ -87,30 +87,30 @@ namespace Capa_Presentacion.Formularios
             // dgvPermisos
             // 
             this.dgvPermisos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPermisos.Location = new System.Drawing.Point(12, 178);
+            this.dgvPermisos.Location = new System.Drawing.Point(12, 235);
             this.dgvPermisos.Name = "dgvPermisos";
             this.dgvPermisos.RowHeadersWidth = 51;
             this.dgvPermisos.RowTemplate.Height = 24;
-            this.dgvPermisos.Size = new System.Drawing.Size(361, 216);
+            this.dgvPermisos.Size = new System.Drawing.Size(509, 253);
             this.dgvPermisos.TabIndex = 6;
             this.dgvPermisos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPermisos_CellContentClick);
             // 
-            // btnReiniciar
+            // cboParentMenu
             // 
-            this.btnReiniciar.Location = new System.Drawing.Point(283, 408);
-            this.btnReiniciar.Name = "btnReiniciar";
-            this.btnReiniciar.Size = new System.Drawing.Size(75, 23);
-            this.btnReiniciar.TabIndex = 7;
-            this.btnReiniciar.Text = "Reiniciar";
-            this.btnReiniciar.UseVisualStyleBackColor = true;
-           
+            this.cboParentMenu.FormattingEnabled = true;
+            this.cboParentMenu.Location = new System.Drawing.Point(237, 136);
+            this.cboParentMenu.Name = "cboParentMenu";
+            this.cboParentMenu.Size = new System.Drawing.Size(121, 24);
+            this.cboParentMenu.TabIndex = 8;
+            this.cboParentMenu.Text = "seleccionar ";
+            this.cboParentMenu.SelectedIndexChanged += new System.EventHandler(this.cboParentMenu_SelectedIndexChanged);
             // 
             // frmPermisos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 443);
-            this.Controls.Add(this.btnReiniciar);
+            this.ClientSize = new System.Drawing.Size(548, 528);
+            this.Controls.Add(this.cboParentMenu);
             this.Controls.Add(this.dgvPermisos);
             this.Controls.Add(this.btnEliminarP);
             this.Controls.Add(this.btnGuardarP);
@@ -134,6 +134,6 @@ namespace Capa_Presentacion.Formularios
         private System.Windows.Forms.Button btnGuardarP;
         private System.Windows.Forms.Button btnEliminarP;
         private System.Windows.Forms.DataGridView dgvPermisos;
-        private System.Windows.Forms.Button btnReiniciar;
+        private System.Windows.Forms.ComboBox cboParentMenu;
     }
 }

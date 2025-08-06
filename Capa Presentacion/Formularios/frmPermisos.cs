@@ -16,63 +16,81 @@ namespace Capa_Presentacion.Formularios
     public partial class frmPermisos : Form
     {
         private CL_Permisos cl_permiso = new CL_Permisos();
+
         public frmPermisos()
         {
             InitializeComponent();
         }
 
-       
+
 
         private void btnGuardarP_Click(object sender, EventArgs e)
         {
             string nombre_menu = txtNombreM.Text;
+            int? parent_id = null;
+
+            // Si seleccionaste un menú principal como padre
+            if (cboParentMenu.SelectedItem != null)
+            {
+                var selectedPermiso = (Permisos)cboParentMenu.SelectedItem; // Asegúrate de que combobox tenga objetos Permisos
+                parent_id = selectedPermiso.Id_permiso;
+            }
 
             try
             {
-                
-                cl_permiso.InsertarPermiso(nombre_menu);
-
+                cl_permiso.InsertarPermiso(nombre_menu, parent_id);
                 MessageBox.Show("Permiso guardado exitosamente.");
 
-                // Limpia el campo de texto después de guardar
-                txtNombreM.Clear();
-
+                // Recargar el DataGridView después de guardar
                 CargarPermiso();
-
+                txtNombreM.Clear();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al guardar el Permiso: " + ex.Message);
             }
         }
+
+
         private void CargarPermiso()
         {
-
-            try
+            // Configurar las columnas del DataGridView si no existen
+            if (dgvPermisos.Columns.Count == 0)
             {
-                // Obtener la lista de Rol desde la capa lógica
-                List<Permisos> lista = cl_permiso.ListarPermisos();
-
-                // Asignar la lista de Rol como fuente de datos del DataGridView
-                dgvPermisos.DataSource = lista;
-           
-
-                dgvPermisos.Columns["Id_permiso"].ReadOnly = true ;
-                dgvPermisos.Columns["nombre_menu"].ReadOnly= true;
-                dgvPermisos.Columns["fecha_registro"].Visible = false;
-
+                dgvPermisos.Columns.Add("Id_permiso", "ID");
+                dgvPermisos.Columns.Add("nombre_menu", "Nombre del Menú");
+                dgvPermisos.Columns.Add("Parent_id", "ID del Padre");
             }
-            catch (Exception e)
+
+            dgvPermisos.Rows.Clear(); // Limpiar el contenido anterior del DataGridView
+
+            // Obtener permisos de la base de datos
+            List<Permisos> permisos = cl_permiso.ListarPermisos();
+
+            // Cargar menús principales
+            foreach (var permiso in permisos.Where(p => p.Parent_id == null)) // Menús principales
             {
-                MessageBox.Show("Error al cargar los Permisos: " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                dgvPermisos.Rows.Add(permiso.Id_permiso, permiso.nombre_menu, permiso.Parent_id);
+
+                // Submenús relacionados
+                foreach (var subPermiso in permisos.Where(p => p.Parent_id == permiso.Id_permiso))
+                {
+                    int rowIndex = dgvPermisos.Rows.Add(subPermiso.Id_permiso, "   " + subPermiso.nombre_menu, subPermiso.Parent_id);
+                    dgvPermisos.Rows[rowIndex].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0); // Sangría para submenús
+                }
             }
+
         }
 
-      
+
+
 
         private void frmPermisos_Load(object sender, EventArgs e)
         {
             CargarPermiso();
+            CargarMenusPrincipales();
+
+
         }
 
 
@@ -81,121 +99,71 @@ namespace Capa_Presentacion.Formularios
 
         private void dgvPermisos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                // Verifica que se haga clic en la columna correcta (por ejemplo, columna de "Eliminar")
-                if (e.ColumnIndex == 1 && e.RowIndex >= 0) // Asegúrate de que ColumnIndex sea la columna de tu botón
-                {
-                    // Obtener el Id_permiso desde la fila seleccionada
-                    int Id_permiso = Convert.ToInt32(dgvPermisos.Rows[e.RowIndex].Cells["Id_permiso"].Value);
-
-                    // Confirmar la eliminación con el usuario
-                    DialogResult result = MessageBox.Show(
-                        "¿Estás seguro de que deseas eliminar este permiso?",
-                        "Confirmar eliminación",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning
-                    );
-
-                    if (result == DialogResult.Yes)
-                    {
-                        // Llamar a la capa lógica para eliminar el permiso
-                        CL_Permisos permisosLogic = new CL_Permisos();
-                        bool eliminado = permisosLogic.EliminarPermiso(Id_permiso);
-
-                        if (eliminado)
-                        {
-                            // Mostrar mensaje de éxito
-                            MessageBox.Show(
-                                "Permiso eliminado correctamente.",
-                                "Éxito",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information
-                            );
-
-                            // Recargar el DataGridView para mostrar los cambios
-                            CargarPermiso();
-                        }
-                        else
-                        {
-                            MessageBox.Show(
-                                "No se pudo eliminar el permiso. Verifica los datos.",
-                                "Error",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error
-                            );
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Manejo de errores
-                MessageBox.Show(
-                    "Ocurrió un error al intentar eliminar el permiso: " + ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-            }
         }
 
 
         private void btnEliminarP_Click(object sender, EventArgs e)
         {
-
-           try
-    {
-        // Validar si hay una fila seleccionada
-        if (dgvPermisos.SelectedRows.Count > 0)
-        {
-            // Obtener el ID del permiso seleccionado desde la columna correspondiente
-            int Id_permiso = Convert.ToInt32(dgvPermisos.SelectedRows[0].Cells["Id_permiso"].Value);
-
-            // Confirmar la eliminación con el usuario
-            DialogResult result = MessageBox.Show("¿Estás seguro de que deseas eliminar este permiso?", 
-                                                  "Confirmar eliminación", 
-                                                  MessageBoxButtons.YesNo, 
-                                                  MessageBoxIcon.Warning);
-
-            if (result == DialogResult.Yes)
+            if (dgvPermisos.SelectedRows.Count > 0)
             {
-                // Llamar a la capa lógica para eliminar el permiso
-                CL_Permisos permisosLogic = new CL_Permisos();
-                bool eliminado = permisosLogic.EliminarPermiso(Id_permiso);
+                int Id_permiso = Convert.ToInt32(dgvPermisos.SelectedRows[0].Cells["Id_permiso"].Value);
 
-                if (eliminado)
+                try
                 {
-                    // Mostrar mensaje de éxito
-                    MessageBox.Show("Permiso eliminado y IDs reiniciados correctamente.", "Éxito", 
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Recargar los permisos en el DataGridView
-                    CargarPermiso();
+                    cl_permiso.EliminarPermiso(Id_permiso);
+                    MessageBox.Show("Permiso eliminado exitosamente.");
+                    CargarPermiso(); // Recargar los permisos
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Error al eliminar el permiso.", "Error", 
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error al eliminar el Permiso: {ex.Message}");
                 }
             }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un permiso para eliminar.");
+            }
         }
-        else
+
+
+        // Método para cargar los menús principales
+        private void CargarMenusPrincipales()
         {
-            MessageBox.Show("Selecciona un permiso para eliminar.", "Advertencia", 
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            CL_Permisos cdPermisos = new CL_Permisos();
+
+            // Obtener los menús principales (Parent_id == null)
+            var menusPrincipales = cdPermisos.ListarPermisos()
+                                              .Where(p => p.Parent_id == null)
+                                              .ToList();
+
+            // Agregar una opción inicial para "Menú principal"
+            menusPrincipales.Insert(0, new Permisos { Id_permiso = 0, nombre_menu = "Menú principal" });
+
+            // Configurar la fuente de datos del ComboBox
+            cboParentMenu.DataSource = menusPrincipales;
+            cboParentMenu.DisplayMember = "nombre_menu";
+            cboParentMenu.ValueMember = "Id_permiso";
         }
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show("Ocurrió un error al intentar eliminar el permiso: " + ex.Message, 
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    }
+
+
+        // Manejo del evento SelectedIndexChanged
+        private void cboParentMenu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Aquí puedes manejar la selección del usuario sin recargar los datos
+            if (cboParentMenu.SelectedValue != null && int.TryParse(cboParentMenu.SelectedValue.ToString(), out int idPermisoSeleccionado))
+            {
+                MessageBox.Show($"ID del permiso seleccionado: {idPermisoSeleccionado}");
+            }
+            else
+            {
+                MessageBox.Show("El valor seleccionado no es válido o no puede convertirse a un entero.");
+            }
 
         }
 
- 
 
-        
+
     }
+
 }
+
